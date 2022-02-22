@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "Blog de Julie"
+version = "0.0.1"
+description = "Partagé mes passions culinaires"
+authors = ["Swann <swann.bouviermuller@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+django = "*"
+dj-static = "*"
+django-crispy-forms = "*"
+django-environ = "*"
+django-storages = "*"
+gunicorn = "*"
+markdown = "*"
+psycopg2 = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
+black = "*"
+django-debug-toolbar = "*"
+django-extensions = "*"
+flake8 = "*"
+flake8-bugbear = "*"
+pytest-django = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
