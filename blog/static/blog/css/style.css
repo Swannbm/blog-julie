@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.grid-item
+{
+    width: 300px;
+}
+
+.grid-item--width2 { width: 600px; }
+
+.card-title {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}

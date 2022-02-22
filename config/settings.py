@@ -55,6 +55,7 @@ THIRD_APPS = [
 ]
 
 PROJECT_APPS = [
+    "users.apps.UsersConfig",
     "blog.apps.BlogConfig",
 ]
 
@@ -123,8 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # indicate the new User model to Django
 AUTH_USER_MODEL = "users.User"
-LOGIN_REDIRECT_URL = "carto:home_connected"
-LOGIN_URL = "users:signin"
 
 
 # Internationalization

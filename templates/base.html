@@ -1,0 +1,133 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block pagetitle %}Blog de Julie{% endblock %}</title>
+        <!-- Favicon-->
+        <link rel="icon"href="{% static 'assets/favicon.ico' %}">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <!-- Bootstrap icon -->
+        <link rel="stylesheet" href="{% static 'icons/bootstrap-icons.css' %}">
+        <!-- subtemplate header injection -->
+        {% block headers %}{% endblock %}
+        <!-- matomo -->
+    </head>
+    <body style="overflow: hidden; height: 100vh;">
+
+            <!-- Page content wrapper-->
+            <div id="page-content-wrapper" class="d-flex flex-column h-100">
+                <!-- Top navigation-->
+                <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                    <div class="container-fluid">
+                        <img src="{% static 'img/logo_france_beta.png' %}" height="30"/>
+                        <a class="navbar-brand ms-2" href="{% url 'home:home' %}">Blog de julie</a>
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+
+                            <ul class="navbar-nav ms-0 mt-2 mt-lg-0">
+                            </ul>
+
+                            <ul class="navbar-nav me-0 mt-2 mt-lg-0">
+                                {% if user.is_authenticated %}
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        {% if is_staff %}
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="{% url 'admin:index' %}"><i class="bi bi-gear"></i> Administration</a>
+                                        {% endif %}
+                                        <div class="dropdown-divider"></div>
+                                    </div>
+                                </li>
+                                {% else %}
+                                
+                                {% endif %}
+                            </ul>
+
+                        </div>
+                    </div>
+                </nav>
+
+                <nav class="navbar navbar-expand border-bottom" style="height:31px;">
+                    <div class="container-fluid">
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent2" aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+
+                        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent2" style="font-size: 0.75rem">
+                            <ul class="navbar-nav ms-0 mt-2 mt-lg-0 ps-2">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb mb-0">
+                                    {% for bread in breadcrumbs %}
+                                        {% if bread.is_active %}
+                                        <li class="breadcrumb-item active" aria-current="page">{{ bread.title}}</li>
+                                        {% else %}
+                                        <li class="breadcrumb-item"><a href="{{ bread.href }}">{{ bread.title}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </ol>
+                                </nav>
+                            </ul>
+
+                            <ul class="navbar-nav me-0 mt-2 mt-lg-0">
+                                {% block sub_bar_actions %}
+                                {% endblock %}
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- Page content-->
+                <main class="p-0 flex-grow-1 d-flex flex-column" style="overflow: auto;">
+                    {% if messages %}
+                        <div class="row justify-content-center w-100 my-0">
+                            <div class="col-12 col-md-8 col-lg-6">
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-5" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <div class="mb-5">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+
+                </main>
+
+                <!-- Footer-->
+                {% block footer %}
+                <footer id="footer" class="bg-light border-top py-5 flex-grow-1 text-right">
+                    <span class="text-muted">Blog fourni gracieusement par Innov & Code</span>
+                </footer>
+                {% endblock footer %}
+            </div>
+
+            
+
+        <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+        <!-- Bootstrap core JS-->
+        <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+        <script>
+        // initialize les tooltips
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+        </script>
+        <!-- subtemplate footer injection -->
+        {% block bodyend %}{% endblock %}
+    </body>
+</html>

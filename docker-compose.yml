@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  db:
+    image: postgres:14.0
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - app-network
+
+  app:
+    build: .
+    # command: python manage.py runserver 0.0.0.0:8000
+    # required to attach vsc to the container and run debug
+    command: tail -F anything
+    volumes:
+      - .:/app
+    env_file: .env
+    # override a few environment variables to ensure it works with other containers
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:
