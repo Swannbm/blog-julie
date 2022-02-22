@@ -46,7 +46,6 @@ DJANGO_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "django.contrib.gis",
     "django.contrib.humanize",
 ]
 
@@ -164,19 +163,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
 # credentials
-AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID", default="")
-AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY", default="")
+AWS_ACCESS_KEY_ID = env.str("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env.str("AWS_SECRET_ACCESS_KEY")
 
 # bucket name and region
-AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME", default="")
-AWS_S3_REGION_NAME = env.str("AWS_S3_REGION_NAME", default="eu-west-3")
+AWS_STORAGE_BUCKET_NAME = env.str("AWS_STORAGE_BUCKET_NAME")
+AWS_S3_REGION_NAME = env.str("AWS_S3_REGION_NAME")
+AWS_DEFAULT_ACL = 'public-read'
 
 # append a prefix to all uploaded file (useful to not mix local, staging...)
-AWS_LOCATION = env.str("AWS_LOCATION", default="local")
+AWS_LOCATION = env.str("AWS_LOCATION")
 # avoid overriding a file if same key is provided
 AWS_S3_FILE_OVERWRITE = False
-# allow signed url to be accessed from all regions
-AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_QUERYSTRING_AUTH = False
 
 # Crispy configuration
 # https://django-crispy-forms.readthedocs.io/en/latest/index.html

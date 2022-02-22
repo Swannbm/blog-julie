@@ -25,8 +25,7 @@
                 <!-- Top navigation-->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
                     <div class="container-fluid">
-                        <img src="{% static 'img/logo_france_beta.png' %}" height="30"/>
-                        <a class="navbar-brand ms-2" href="{% url 'home:home' %}">Blog de julie</a>
+                        <a class="navbar-brand ms-2" href="{% url 'blog_post:list' %}">Blog de julie</a>
 
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
@@ -40,15 +39,11 @@
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
                                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                        {% if is_staff %}
-                                        <div class="dropdown-divider"></div>
+                                        {% if user.is_staff %}
                                         <a class="dropdown-item" href="{% url 'admin:index' %}"><i class="bi bi-gear"></i> Administration</a>
                                         {% endif %}
-                                        <div class="dropdown-divider"></div>
                                     </div>
                                 </li>
-                                {% else %}
-                                
                                 {% endif %}
                             </ul>
 
@@ -108,8 +103,8 @@
 
                 <!-- Footer-->
                 {% block footer %}
-                <footer id="footer" class="bg-light border-top py-5 flex-grow-1 text-right">
-                    <span class="text-muted">Blog fourni gracieusement par Innov & Code</span>
+                <footer id="footer" class="bg-light border-top p-5 flex-grow-1 text-end">
+                    <span class="text-muted"><small>Blog fourni gracieusement par Innov & Code<small></span>
                 </footer>
                 {% endblock footer %}
             </div>

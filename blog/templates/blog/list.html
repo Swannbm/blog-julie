@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load crispy_forms_tags %}
+{% load static %}
 
 
 {% block headers %}
@@ -29,7 +29,7 @@
                     <text x="30%" y="50%" fill="#dee2e6" dy=".3em">Photo à venir</text>
                 </svg>
                 <div class="card-body">
-                <p class="card-title"><a href="{% url 'blog_post:detail' blog_post.id %}" class="stretched-link">{{ blog_post.title }}</a></p>
+                <p class="card-title"><a href="{% url 'blog_post:detail' blog_post.slug %}" class="stretched-link">{{ blog_post.title }}</a></p>
                 <p class="card-text">{{ blog_post.headlines }}</p>
                 </div>
             </div>

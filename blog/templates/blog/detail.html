@@ -9,12 +9,18 @@
 
   <div class="col-12 col-md-5 col-lg-4">
     <!-- Heading -->
-    <h1 class="mb-5 fw-bold text-center"></h1>
+    <h1 class="mb-5">
+      {% if user.is_staff %}
+        <div class="float-end"><a href="{% url 'admin:blog_blogpost_change' blog_post.slug %}">
+          <i class="bi bi-pencil"></i>
+        </a></div>
+      {% endif %}
+      {{ blog_post.title }}
+    </h1>
 
-    <p></p>
+    {{ blog_post.content_html }}
     
   </div>
 </div>
-<!-- / .row -->
 
 {% endblock %}

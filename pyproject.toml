@@ -14,6 +14,8 @@ django-storages = "*"
 gunicorn = "*"
 markdown = "*"
 psycopg2 = "*"
+Pillow = "^9.0.1"
+boto3 = "^1.21.4"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
